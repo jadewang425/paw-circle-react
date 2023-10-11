@@ -12,11 +12,11 @@ const SignIn = (props) => {
 	// 	super(props)
 
 	// 	this.state = {
-	// 		email: '',
+	// 		username: '',
 	// 		password: '',
 	// 	}
 	// }
-    const [email, setEmail] = useState('')
+    const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
     const navigate = useNavigate()
@@ -31,7 +31,7 @@ const SignIn = (props) => {
         console.log('the props', props)
 		const { msgAlert, setUser } = props
 
-        const credentials = {email, password}
+        const credentials = {username, password}
 
 		signIn(credentials)
 			.then((res) => setUser(res.data.user))
@@ -44,7 +44,7 @@ const SignIn = (props) => {
 			)
 			.then(() => navigate('/'))
 			.catch((error) => {
-                setEmail('')
+                setUsername('')
                 setPassword('')
 				msgAlert({
 					heading: 'Sign In Failed with error: ' + error.message,
@@ -59,15 +59,15 @@ const SignIn = (props) => {
             <div className='col-sm-10 col-md-8 mx-auto mt-5'>
                 <h3>Sign In</h3>
                 <Form onSubmit={onSignIn}>
-                    <Form.Group controlId='email'>
-                        <Form.Label>Email address</Form.Label>
+                    <Form.Group controlId='username'>
+                        <Form.Label>Username</Form.Label>
                         <Form.Control
                             required
-                            type='email'
-                            name='email'
-                            value={email}
-                            placeholder='Enter email'
-                            onChange={e => setEmail(e.target.value)}
+                            type='username'
+                            name='username'
+                            value={username}
+                            placeholder='Enter username'
+                            onChange={e => setUsername(e.target.value)}
                         />
                     </Form.Group>
                     <Form.Group controlId='password'>
