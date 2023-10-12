@@ -4,7 +4,8 @@ import Navbar from 'react-bootstrap/Navbar'
 import { Link } from 'react-router-dom'
 const linkStyle = {
     color: 'white',
-    textDecoration: 'none'
+    textDecoration: 'none',
+	margin: '0 10px',
 }
 const authenticatedOptions = (
 	<>
@@ -34,32 +35,35 @@ const unauthenticatedOptions = (
 
 const alwaysOptions = (
 	<>
-		<Nav.Link>
+		<Nav.Item>
 			<Link to='/' style={linkStyle}>
 				Home
 			</Link>
-		</Nav.Link>
+			<Link to='/meetups' style={linkStyle}>
+				Meetups
+			</Link>
+		</Nav.Item>
 	</>
 )
 
-const Header = ({ user }) => (
-	<Navbar bg='primary' variant='dark' expand='md'>
-		<Navbar.Brand>
-            <Link to='/' style={linkStyle}>
-                Paw Circle
-            </Link>
-        </Navbar.Brand>
-		<Navbar.Toggle aria-controls='basic-navbar-nav' />
-		<Navbar.Collapse id='basic-navbar-nav'>
-			<Nav className='ml-auto'>
-				{user && (
-					<span className='navbar-text mr-2'>Welcome, {user.username}</span>
-				)}
-				{alwaysOptions}
-				{user ? authenticatedOptions : unauthenticatedOptions}
-			</Nav>
-		</Navbar.Collapse>
-	</Navbar>
-)
-
-export default Header
+export default function Header ({ user }) {
+	return (
+		<Navbar bg='primary' variant='dark' expand='md'>
+			<Navbar.Brand>
+				<Link to='/' style={linkStyle}>
+					Paw Circle
+				</Link>
+			</Navbar.Brand>
+			<Navbar.Toggle aria-controls='basic-navbar-nav' />
+			<Navbar.Collapse id='basic-navbar-nav'>
+				<Nav className='ml-auto' style={{ alignItems: 'center' }}>
+					{user && (
+						<span className='navbar-text mr-2'>Welcome, {user.username}</span>
+					)}
+					{alwaysOptions}
+					{user ? authenticatedOptions : unauthenticatedOptions}
+				</Nav>
+			</Navbar.Collapse>
+		</Navbar>
+	)
+}

@@ -7,28 +7,15 @@ import messages from '../shared/AutoDismissAlert/messages'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
-const SignIn = (props) => {
-	// constructor(props) {
-	// 	super(props)
-
-	// 	this.state = {
-	// 		username: '',
-	// 		password: '',
-	// 	}
-	// }
+export default function SignIn (props) {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
     const navigate = useNavigate()
 
-	// handleChange = (event) =>
-	// 	this.setState({
-	// 		[event.target.name]: event.target.value,
-	// 	})
-
 	const onSignIn = (event) => {
 		event.preventDefault()
-        console.log('the props', props)
+        // console.log('the props', props)
 		const { msgAlert, setUser } = props
 
         const credentials = {username, password}
@@ -89,5 +76,3 @@ const SignIn = (props) => {
         </div>
     )
 }
-
-export default SignIn
