@@ -44,7 +44,7 @@ export default function MeetupsIndex(props) {
     // console.log('meetups', meetups)
 
     const meetupCards = meetups.map(meetup => {
-        const meetupDate = dateFormat(meetup.date, "yyyy-mm-dd")
+        const meetupDate = dateFormat(meetup.date, "yyyy-mm-dd • h:MM TT")
         return (
             <Link to={`/meetups/${meetup._id}`} key={ meetup._id } className='pc-cards'>
                 <Card style={{ width: '18rem' }}>

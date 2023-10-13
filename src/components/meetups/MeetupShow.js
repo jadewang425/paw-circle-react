@@ -1,3 +1,4 @@
+import dateFormat from 'dateformat'
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Container, Card } from "react-bootstrap";
@@ -21,12 +22,13 @@ export default function MeetupShow(props) {
                     message: messages.showMeetupFailure,
                     variant: 'danger'
                 })
-        })
+            })
     }, [])
     if (!meetup) {
-        <LoadingScreen />
-    }
-    console.log('meetup', meetup)
+        return <LoadingScreen />
+    } 
+
+    const meetupDate = dateFormat(meetup.date, "yyyy-mm-dd • h:MM TT")
     return (
         <>
             <Container>
@@ -34,10 +36,10 @@ export default function MeetupShow(props) {
                     <Card.Header>{meetup.title}</Card.Header>
                     <Card.Body>
                         <Card.Text>
-                            <p>Date: {meetup.date}</p>
-                            <p>Type: {meetup.type}</p>
-                            <p>Location: {meetup.location}</p>
-                            <p>Description: {meetup.description}</p>
+                            Date: {meetupDate}<br/>
+                            Type: {meetup.type}<br/>
+                            Location: {meetup.location}<br/>
+                            Description: {meetup.description}
                         </Card.Text>
                     </Card.Body>
                     {/* <Card.Footer>Created By</Card.Footer> */}
