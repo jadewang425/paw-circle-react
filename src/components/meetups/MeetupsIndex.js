@@ -1,6 +1,6 @@
 import dateFormat from 'dateformat'
 import { useState, useEffect } from 'react'
-import { Card, CardHeader } from 'react-bootstrap'
+import { Card, Container, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { getAllMeetups } from '../../api/meetup'
 import messages from '../shared/AutoDismissAlert/messages'
@@ -11,7 +11,6 @@ export default function MeetupsIndex(props) {
 
     const { msgAlert } = props
     const cardContainer = {
-        margin: '30px',
         display: 'flex',
         flexWrap: 'wrap',
         gap: '20px'
@@ -45,10 +44,9 @@ export default function MeetupsIndex(props) {
 
     const meetupCards = meetups.map(meetup => {
         const meetupDate = dateFormat(meetup.date, "yyyy-mm-dd")
-        // console.log('meetupDate', meetupDate)
         return (
-            <Link className='pc-cards'>
-                <Card key={ meetup.id } style={{ width: '18rem' }}>
+            <Link to={`/meetups/${meetup._id}`} key={ meetup._id } className='pc-cards'>
+                <Card style={{ width: '18rem' }}>
                     <Card.Header>{meetup.title}</Card.Header>
                     <Card.Body>
                         <Card.Text>Date: {meetupDate}</Card.Text>
@@ -61,8 +59,13 @@ export default function MeetupsIndex(props) {
 })
 
     return (
-        <main className='container-md' style={cardContainer}>
-            { meetupCards }
+        <main style={{display: 'flex', margin: '20px'}} >
+            <Container style={{width: '18rem'}} >
+                <Button>Create Meetup</Button>
+            </Container>
+            <Container className='container-md' style={cardContainer}>
+                { meetupCards }
+            </Container>
         </main>
     )
 }

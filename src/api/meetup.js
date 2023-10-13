@@ -7,6 +7,9 @@ export const getAllMeetups = () => {
 }
 
 // Show
+export const getOneMeetup = (id) => {
+    return axios(`${apiUrl}/meetups/${id}`)
+}
 // Create
 // Update
 // Delete

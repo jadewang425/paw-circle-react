@@ -13,13 +13,14 @@ import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
 import MeetupsIndex from './components/meetups/MeetupsIndex'
+import MeetupShow from './components/meetups/MeetupShow'
 
 const App = () => {
 	const [user, setUser] = useState(null)
 	const [msgAlerts, setMsgAlerts] = useState([])
 
-	console.log('user in app', user)
-	console.log('message alerts', msgAlerts)
+	// console.log('user in app', user)
+	// console.log('message alerts', msgAlerts)
 	const clearUser = () => {
 		console.log('clear user ran')
 		setUser(null)
@@ -74,6 +75,10 @@ const App = () => {
 				<Route
 					path='/meetups' 
 					element={<MeetupsIndex msgAlert={msgAlert} user={user} />}
+				/>
+				<Route
+					path='/meetups/:id' 
+					element={<MeetupShow msgAlert={msgAlert} user={user} />}
 				/>
 			</Routes>
 			{msgAlerts.map((msgAlert) => (
