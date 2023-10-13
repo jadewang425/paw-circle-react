@@ -5,6 +5,7 @@ import { Container, Card } from "react-bootstrap";
 import { getOneMeetup } from "../../api/meetup";
 
 import messages from '../shared/AutoDismissAlert/messages'
+import LoadingScreen from "../shared/LoadingScreen";
 
 export default function MeetupShow(props) {
     const [meetup, setMeetup] = useState(null)
@@ -23,7 +24,7 @@ export default function MeetupShow(props) {
         })
     }, [])
     if (!meetup) {
-        <p>Loading...</p>
+        <LoadingScreen />
     }
     console.log('meetup', meetup)
     return (

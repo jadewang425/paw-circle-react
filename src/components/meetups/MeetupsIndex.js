@@ -4,6 +4,7 @@ import { Card, Container, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { getAllMeetups } from '../../api/meetup'
 import messages from '../shared/AutoDismissAlert/messages'
+import LoadingScreen from '../shared/LoadingScreen'
 
 export default function MeetupsIndex(props) {
     const [meetups, setMeetups] = useState(null)
@@ -33,10 +34,10 @@ export default function MeetupsIndex(props) {
     }, [])
 
     if (error) {
-        return <p>Error!</p>
+        return <LoadingScreen />
     } 
     if (!meetups) {
-        return <p>Loading...</p>
+        return <LoadingScreen />
     } else if (meetups.length === 0) {
         return <p>No Meetups scheduled at the moment.</p>
     }
@@ -49,9 +50,11 @@ export default function MeetupsIndex(props) {
                 <Card style={{ width: '18rem' }}>
                     <Card.Header>{meetup.title}</Card.Header>
                     <Card.Body>
-                        <Card.Text>Date: {meetupDate}</Card.Text>
-                        <Card.Text>Type: {meetup.type}</Card.Text>
-                        <Card.Text>Location: {meetup.location}</Card.Text>
+                        <Card.Text>
+                            <small>Date: {meetupDate}</small><br/>
+                            <small>Type: {meetup.type}</small><br/>
+                            <small>Location: {meetup.location}</small>
+                        </Card.Text>
                     </Card.Body>
                 </Card>
             </Link>
@@ -61,7 +64,9 @@ export default function MeetupsIndex(props) {
     return (
         <main style={{display: 'flex', margin: '20px'}} >
             <Container style={{width: '18rem'}} >
-                <Button>Create Meetup</Button>
+                <Link to={'/meetups/create'}>
+                    <Button>Create Meetup</Button>
+                </Link>
             </Container>
             <Container className='container-md' style={cardContainer}>
                 { meetupCards }

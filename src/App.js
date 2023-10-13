@@ -14,6 +14,7 @@ import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
 import MeetupsIndex from './components/meetups/MeetupsIndex'
 import MeetupShow from './components/meetups/MeetupShow'
+import MeetupCreate from './components/meetups/MeetupCreate'
 
 const App = () => {
 	const [user, setUser] = useState(null)
@@ -75,6 +76,13 @@ const App = () => {
 				<Route
 					path='/meetups' 
 					element={<MeetupsIndex msgAlert={msgAlert} user={user} />}
+				/>
+				<Route
+					path='/meetups/create'
+					element={
+					<RequireAuth user={user}>
+						<MeetupCreate msgAlert={msgAlert} user={user} />
+					</RequireAuth>}
 				/>
 				<Route
 					path='/meetups/:id' 
