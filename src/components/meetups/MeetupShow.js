@@ -1,15 +1,15 @@
 import dateFormat from 'dateformat'
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Container, Card } from "react-bootstrap";
-
-import { getOneMeetup } from "../../api/meetup";
-
+import { Container, Card, Button } from "react-bootstrap";
+import { getOneMeetup, updateMeetup } from "../../api/meetup";
 import messages from '../shared/AutoDismissAlert/messages'
 import LoadingScreen from "../shared/LoadingScreen";
+import EditMeetupModal from './EditModal';
 
 export default function MeetupShow(props) {
     const [meetup, setMeetup] = useState(null)
+    const [editModalShow, setEditModalShow] = useState(false)
 
     const { id } = useParams()
     const { user, msgAlert } = props
@@ -39,12 +39,29 @@ export default function MeetupShow(props) {
                             Date: {meetupDate}<br/>
                             Type: {meetup.type}<br/>
                             Location: {meetup.location}<br/>
-                            Description: {meetup.description}
+                            Description: {meetup.description}<br/>
+                            { meetup.owner ? 
+                            `Created By ${meetup.owner.username}`
+                            :null }
                         </Card.Text>
                     </Card.Body>
-                    {/* <Card.Footer>Created By</Card.Footer> */}
+                    { meetup.owner && user && meetup.owner._id === user._id ? 
+                        <><Card.Footer>
+                            <Button className='mx-2' variant="warning" onClick={() => setEditModalShow(true)}>Edit</Button>
+                            <Button className='mx-2' variant="danger">Delete</Button>
+                        </Card.Footer></>
+                    :null
+                    }
+                    
                 </Card>
             </Container>
+            <EditMeetupModal 
+                user={user}
+                show={editModalShow}
+                updateMeetup={updateMeetup}
+                handleClose={() => setEditModalShow(false)}
+                meetup={meetup}
+            />
         </>
     )
 }

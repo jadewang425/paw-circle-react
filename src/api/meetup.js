@@ -22,4 +22,14 @@ export const createMeetup = (user, newMeetup) => {
     })
 }
 // Update
+export const updateMeetup = (user, updatedMeetup) => {
+    return axios({
+        url: `${apiUrl}/meetups/${updatedMeetup._id}`,
+        method: 'PATCH',
+        headers: {
+            Authorization: `Token token=${user.token}`
+        },
+        data: { meetup: updatedMeetup }
+    })
+}
 // Delete

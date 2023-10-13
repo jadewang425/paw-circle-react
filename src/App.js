@@ -16,7 +16,7 @@ import MeetupsIndex from './components/meetups/MeetupsIndex'
 import MeetupShow from './components/meetups/MeetupShow'
 import MeetupCreate from './components/meetups/MeetupCreate'
 
-const App = () => {
+export default function App () {
 	const [user, setUser] = useState(null)
 	const [msgAlerts, setMsgAlerts] = useState([])
 
@@ -109,5 +109,3 @@ const App = () => {
 		</Fragment>
 	)
 }
-
-export default App
