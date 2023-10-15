@@ -50,12 +50,12 @@ export default function MeetupCreate (props) {
         e.preventDefault()
         
         createMeetup(user, meetup) 
-            .then(res => { navigate(`/meetups/${res.data.meetup.id}`)})
+            .then(res => { navigate(`/meetups/${res.data.meetup._id}`)})
             .then(() => {
                 msgAlert({
                     heading: 'Congratulations! A new meetup is created!',
                     message: messages.createMeetupSuccess,
-                    variant: 'danger'
+                    variant: 'success'
                 })
             })
             .catch(err => {
