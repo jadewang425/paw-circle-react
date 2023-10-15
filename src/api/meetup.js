@@ -33,3 +33,12 @@ export const updateMeetup = (user, updatedMeetup) => {
     })
 }
 // Delete
+export const deleteMeetup = (user, meetupId) => {
+    return axios({
+        url: `${apiUrl}/meetups/${meetupId}`,
+        method: 'DELETE',
+        headers: {
+            Authorization: `Token token=${user.token}`
+        }
+    })
+}

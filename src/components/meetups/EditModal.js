@@ -1,12 +1,12 @@
 import dateFormat from 'dateformat'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Modal } from 'react-bootstrap'
 import MeetupForm from '../shared/MeetupForm'
-import messages, { updateMeetupFailure, updateMeetupSuccess } from '../shared/AutoDismissAlert/messages'
+import messages from '../shared/AutoDismissAlert/messages'
 import { updateMeetup } from '../../api/meetup'
 
 export default function EditMeetupModal(props) {
-    const { user, show, handleClose, updateMeetup, msgAlert, triggerRefresh } = props
+    const { user, show, handleClose, msgAlert, triggerRefresh } = props
     // function formattedDate (d) {
     //     return dateFormat(d, 'yyyy-mm-dd')+"T"+dateFormat(d, 'HH:MM')
     // }
@@ -34,7 +34,7 @@ export default function EditMeetupModal(props) {
             .then(() => {
                 msgAlert({
                     heading: 'Update success!',
-                    message: updateMeetupSuccess,
+                    message: messages.updateMeetupSuccess,
                     variant: 'success'
                 })
             })
@@ -42,7 +42,7 @@ export default function EditMeetupModal(props) {
             .catch(err => {
                 msgAlert({
                     heading: 'Update failed.',
-                    message: updateMeetupFailure,
+                    message: messages.updateMeetupFailure,
                     variant: 'danger'
                 })
             })

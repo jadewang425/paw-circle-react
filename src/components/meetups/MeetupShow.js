@@ -2,14 +2,16 @@ import dateFormat from 'dateformat'
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Container, Card, Button } from "react-bootstrap";
-import { getOneMeetup, updateMeetup } from "../../api/meetup";
+import { getOneMeetup, deleteMeetup } from "../../api/meetup";
 import messages from '../shared/AutoDismissAlert/messages'
 import LoadingScreen from "../shared/LoadingScreen";
 import EditMeetupModal from './EditModal';
+import DeleteMeetupModal from './DeleteModal';
 
 export default function MeetupShow(props) {
     const [meetup, setMeetup] = useState(null)
     const [editModalShow, setEditModalShow] = useState(false)
+    const [deleteModalShow, setDeleteModalShow] = useState(false)
     const [updated, setUpdated] = useState(false)
 
     const { id } = useParams()
@@ -25,6 +27,7 @@ export default function MeetupShow(props) {
                 })
             })
     }, [updated])
+
     if (!meetup) {
         return <LoadingScreen />
     } 
@@ -49,7 +52,7 @@ export default function MeetupShow(props) {
                     { meetup.owner && user && meetup.owner._id === user._id ? 
                         <><Card.Footer>
                             <Button className='mx-2' variant="warning" onClick={() => setEditModalShow(true)}>Edit</Button>
-                            <Button className='mx-2' variant="danger">Delete</Button>
+                            <Button className='mx-2' variant="danger" onClick={() => setDeleteModalShow(true)}>Delete</Button>
                         </Card.Footer></>
                     :null
                     }
@@ -59,9 +62,16 @@ export default function MeetupShow(props) {
             <EditMeetupModal 
                 user={user}
                 show={editModalShow}
-                updateMeetup={updateMeetup}
                 msgAlert={msgAlert}
                 handleClose={() => setEditModalShow(false)}
+                triggerRefresh={() => setUpdated(prev => !prev)}
+                meetup={meetup}
+            />
+            <DeleteMeetupModal 
+                user={user}
+                show={deleteModalShow}
+                msgAlert={msgAlert}
+                handleClose={() => setDeleteModalShow(false)}
                 triggerRefresh={() => setUpdated(prev => !prev)}
                 meetup={meetup}
             />
