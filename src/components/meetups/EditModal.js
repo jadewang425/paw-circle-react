@@ -6,7 +6,7 @@ import messages from '../shared/AutoDismissAlert/messages'
 import { updateMeetup } from '../../api/meetup'
 
 export default function EditMeetupModal(props) {
-    const { user, show, handleClose, msgAlert, triggerRefresh } = props
+    const { user, show, handleClose, msgAlert, triggerRefresh, petTypes } = props
     // function formattedDate (d) {
     //     return dateFormat(d, 'yyyy-mm-dd')+"T"+dateFormat(d, 'HH:MM')
     // }
@@ -57,6 +57,7 @@ export default function EditMeetupModal(props) {
                     handleChange={onChange}
                     handleSubmit={onSubmit}
                     heading="Update meetup"
+                    petTypes={petTypes}
                 />
             </Modal.Body>
         </Modal>

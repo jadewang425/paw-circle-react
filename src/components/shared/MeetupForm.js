@@ -1,9 +1,8 @@
 import { Form, Button, Container } from "react-bootstrap";
 
 export default function MeetupForm(props) {
-    const { meetup, handleChange, handleSubmit, heading } = props
+    const { meetup, handleChange, handleSubmit, heading, petTypes } = props
 
-    const petTypes = ['Cat', 'Dog', 'Other']
     const options = petTypes.map(option => (
         <option value={option} key={option}>{option}</option>
     ))

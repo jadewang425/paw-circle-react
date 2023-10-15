@@ -8,7 +8,7 @@ import MeetupForm from "../shared/MeetupForm";
 // pass props  meetup, handleChange, handleSubmit, heading
 
 export default function MeetupCreate (props) {
-    const { user, msgAlert } = props
+    const { user, msgAlert, petTypes } = props
     const navigate = useNavigate()
     const [meetup, setMeetup] = useState({
         title: '',
@@ -73,6 +73,7 @@ export default function MeetupCreate (props) {
             handleChange={onChange}
             handleSubmit={onSubmit}
             heading="add a new meetup"
+            petTypes={petTypes}
         />
     )
 }

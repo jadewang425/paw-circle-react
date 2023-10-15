@@ -17,6 +17,7 @@ import MeetupShow from './components/meetups/MeetupShow'
 import MeetupCreate from './components/meetups/MeetupCreate'
 
 export default function App () {
+	const petTypes = ['Cat', 'Dog', 'Other']
 	const [user, setUser] = useState(null)
 	const [msgAlerts, setMsgAlerts] = useState([])
 
@@ -81,18 +82,18 @@ export default function App () {
 				/>
 				<Route
 					path='/meetups' 
-					element={<MeetupsIndex msgAlert={msgAlert} user={user} />}
+					element={<MeetupsIndex msgAlert={msgAlert} user={user} petTypes={petTypes} />}
 				/>
 				<Route
 					path='/meetups/create'
 					element={
 					<RequireAuth user={user}>
-						<MeetupCreate msgAlert={msgAlert} user={user} />
+						<MeetupCreate msgAlert={msgAlert} user={user} petTypes={petTypes} />
 					</RequireAuth>}
 				/>
 				<Route
 					path='/meetups/:id' 
-					element={<MeetupShow msgAlert={msgAlert} user={user} />}
+					element={<MeetupShow msgAlert={msgAlert} user={user} petTypes={petTypes} />}
 				/>
 			</Routes>
 			{msgAlerts.map((msgAlert) => (

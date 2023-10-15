@@ -2,7 +2,7 @@ import dateFormat from 'dateformat'
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Container, Card, Button } from "react-bootstrap";
-import { getOneMeetup, deleteMeetup } from "../../api/meetup";
+import { getOneMeetup } from "../../api/meetup";
 import messages from '../shared/AutoDismissAlert/messages'
 import LoadingScreen from "../shared/LoadingScreen";
 import EditMeetupModal from './EditModal';
@@ -15,7 +15,7 @@ export default function MeetupShow(props) {
     const [updated, setUpdated] = useState(false)
 
     const { id } = useParams()
-    const { user, msgAlert } = props
+    const { user, msgAlert, petTypes } = props
     useEffect(() => {
         getOneMeetup(id)
             .then(res => setMeetup(res.data.meetup))
@@ -66,6 +66,7 @@ export default function MeetupShow(props) {
                 handleClose={() => setEditModalShow(false)}
                 triggerRefresh={() => setUpdated(prev => !prev)}
                 meetup={meetup}
+                petTypes={petTypes}
             />
             <DeleteMeetupModal 
                 user={user}
