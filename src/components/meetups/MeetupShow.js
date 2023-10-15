@@ -10,6 +10,7 @@ import EditMeetupModal from './EditModal';
 export default function MeetupShow(props) {
     const [meetup, setMeetup] = useState(null)
     const [editModalShow, setEditModalShow] = useState(false)
+    const [updated, setUpdated] = useState(false)
 
     const { id } = useParams()
     const { user, msgAlert } = props
@@ -23,7 +24,7 @@ export default function MeetupShow(props) {
                     variant: 'danger'
                 })
             })
-    }, [])
+    }, [updated])
     if (!meetup) {
         return <LoadingScreen />
     } 
@@ -59,7 +60,9 @@ export default function MeetupShow(props) {
                 user={user}
                 show={editModalShow}
                 updateMeetup={updateMeetup}
+                msgAlert={msgAlert}
                 handleClose={() => setEditModalShow(false)}
+                triggerRefresh={() => setUpdated(prev => !prev)}
                 meetup={meetup}
             />
         </>

@@ -29,7 +29,6 @@ export default function App () {
 	}, [])
 
 	const clearUser = () => {
-		console.log('clear user ran')
 		setUser(null)
 		localStorage.removeItem('user')
 	}

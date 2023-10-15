@@ -5,7 +5,7 @@ export default function MeetupForm(props) {
 
     const petTypes = ['Cat', 'Dog', 'Other']
     const options = petTypes.map(option => (
-        <option value={option}>{option}</option>
+        <option value={option} key={option}>{option}</option>
     ))
 
     return (
