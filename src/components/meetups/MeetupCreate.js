@@ -55,7 +55,7 @@ export default function MeetupCreate (props) {
             meetup={meetup}
             handleChange={onChange}
             handleSubmit={onSubmit}
-            heading="add a new meetup"
+            heading="Add A New Meetup"
             petTypes={petTypes}
             MAPBOX_TOKEN={MAPBOX_TOKEN}
         />

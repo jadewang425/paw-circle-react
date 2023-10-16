@@ -1,4 +1,4 @@
-import { Form, Button, Container } from "react-bootstrap"
+import { Form, Button, Card, Container } from "react-bootstrap"
 import MapboxAutocomplete from "react-mapbox-autocomplete"
 
 export default function MeetupForm(props) {
@@ -8,19 +8,14 @@ export default function MeetupForm(props) {
         <option value={option} key={option}>{option}</option>
     ))
 
-    // const mapboxApiAccessToken=
-    // "pk.eyJ1Ijoiam9uc2VuIiwiYSI6IkR6UU9oMDQifQ.dymRIgqv-UV6oz0-HCFx1w"
-    
-    // console.log('.env', process.env.REACT_APP_MAPBOX_TOKEN)
-
     function _suggestionSelect(result, lat, long, text) {
         console.log(result, lat, long, text);
         meetup.location = result;
     }
 
     return (
-        <Container className="justify-content-center">
-            <h3>{heading}</h3>
+        <Card className="justify-content-center m-4">
+            <Card.Header style={{backgroundColor: 'tan'}}><strong>{heading}</strong></Card.Header>
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="m-2">
                     <Form.Label>Title</Form.Label>
@@ -81,8 +76,8 @@ export default function MeetupForm(props) {
                         onChange={handleChange}
                     />
                 </Form.Group>
-                <Button className="m-2" type="submit">Submit</Button>
+                <Button className="m-2" variant="dark" type="submit">Submit</Button>
             </Form>
-        </Container>
+        </Card>
     )
 }

@@ -36,11 +36,7 @@ export default function MeetupsIndex(props) {
 
     if (error) {
         return <LoadingScreen />
-    } 
-
-    // if (activeType !== '') {
-    //     setMeetups(meetups.filter(meetup => meetup.type === activeType))
-    // }
+    }
 
     return (
         <main style={{display: 'flex', margin: '20px'}} >

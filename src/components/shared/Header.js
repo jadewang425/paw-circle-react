@@ -51,7 +51,7 @@ const alwaysOptions = (
 
 export default function Header ({ user }) {
 	return (
-		<Navbar bg='primary' variant='dark' expand='md'>
+		<Navbar expand='md' style={{ backgroundColor: 'tan'}}>
 			<Navbar.Brand>
 				<Link to='/' style={linkStyle}>
 					Paw Circle

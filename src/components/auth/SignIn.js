@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { signIn } from '../../api/auth'
 import messages from '../shared/AutoDismissAlert/messages'
 
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
+import { Button, Card, Form } from 'react-bootstrap'
 
 export default function SignIn (props) {
     const [username, setUsername] = useState('')
@@ -47,11 +46,11 @@ export default function SignIn (props) {
 
     return (
         <div className='row'>
-            <div className='col-sm-10 col-md-8 mx-auto mt-5'>
-                <h3>Sign In</h3>
+            <Card className='col-sm-10 col-md-8 mx-auto mt-5' style={{padding: '0'}}>
+                <Card.Header style={{backgroundColor: 'tan'}}>Sign In</Card.Header>
                 <Form onSubmit={onSignIn}>
                     <Form.Group controlId='username'>
-                        <Form.Label>Username</Form.Label>
+                        <Form.Label className='m-2'>Username</Form.Label>
                         <Form.Control
                             required
                             type='username'
@@ -62,7 +61,7 @@ export default function SignIn (props) {
                         />
                     </Form.Group>
                     <Form.Group controlId='password'>
-                        <Form.Label>Password</Form.Label>
+                        <Form.Label className='m-2'>Password</Form.Label>
                         <Form.Control
                             required
                             name='password'
@@ -72,11 +71,11 @@ export default function SignIn (props) {
                             onChange={e => setPassword(e.target.value)}
                         />
                     </Form.Group>
-                    <Button variant='primary' type='submit'>
+                    <Button variant='dark' type='submit' className='m-2'>
                         Submit
                     </Button>
                 </Form>
-            </div>
+            </Card>
         </div>
     )
 }

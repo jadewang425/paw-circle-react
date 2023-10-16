@@ -15,7 +15,9 @@ export default function MeetupMain(props) {
         return (
             <Link to={`/meetups/${meetup._id}`} key={ meetup._id } style={{textDecoration: 'none'}}>
                 <Card style={{ width: '18rem', height: '12rem' }}>
-                    <Card.Header>{meetup.title}</Card.Header>
+                    <Card.Header className="text-white" style={{backgroundColor: 'tan'}}>
+                        <strong>{meetup.title}</strong>
+                    </Card.Header>
                     <Card.Body>
                         <Card.Text>
                             <small>Date: {meetupDate}</small><br/>

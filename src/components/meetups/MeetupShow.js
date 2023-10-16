@@ -36,7 +36,7 @@ export default function MeetupShow(props) {
     return (
         <>
             <Container>
-                <Card>
+                <Card className='m-2'>
                     <Card.Header>{meetup.title}</Card.Header>
                     <Card.Body>
                         <Card.Text>

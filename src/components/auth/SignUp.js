@@ -1,24 +1,13 @@
 // import React, { Component } from 'react'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { signUp, signIn } from '../../api/auth'
 import messages from '../shared/AutoDismissAlert/messages'
 
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
+import { Button, Card, Form } from 'react-bootstrap'
 
-const SignUp = (props) => {
-	// constructor(props) {
-	// 	super(props)
-
-	// 	this.state = {
-	// 		username: '',
-	// 		email: '',
-	// 		password: '',
-	// 		passwordConfirmation: '',
-	// 	}
-	// }    
+export default function SignUp (props) {
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -60,11 +49,11 @@ const SignUp = (props) => {
 
     return (
         <div className='row'>
-            <div className='col-sm-10 col-md-8 mx-auto mt-5'>
-                <h3>Sign Up</h3>
+            <Card className='col-sm-10 col-md-8 mx-auto mt-5' style={{padding: '0'}}>
+                <Card.Header style={{backgroundColor: 'tan'}}>Sign Up</Card.Header>
                 <Form onSubmit={onSignUp}>
                     <Form.Group controlId='username'>
-                        <Form.Label>Username</Form.Label>
+                        <Form.Label className='m-2'>Username</Form.Label>
                         <Form.Control
                             required
                             type='username'
@@ -75,7 +64,7 @@ const SignUp = (props) => {
                         />
                     </Form.Group>
                     <Form.Group controlId='email'>
-                        <Form.Label>Email address</Form.Label>
+                        <Form.Label className='m-2'>Email address</Form.Label>
                         <Form.Control
                             required
                             type='email'
@@ -86,7 +75,7 @@ const SignUp = (props) => {
                         />
                     </Form.Group>
                     <Form.Group controlId='password'>
-                        <Form.Label>Password</Form.Label>
+                        <Form.Label className='m-2'>Password</Form.Label>
                         <Form.Control
                             required
                             name='password'
@@ -97,7 +86,7 @@ const SignUp = (props) => {
                         />
                     </Form.Group>
                     <Form.Group controlId='passwordConfirmation'>
-                        <Form.Label>Password Confirmation</Form.Label>
+                        <Form.Label className='m-2'>Password Confirmation</Form.Label>
                         <Form.Control
                             required
                             name='passwordConfirmation'
@@ -107,14 +96,12 @@ const SignUp = (props) => {
                             onChange={e => setPasswordConfirmation(e.target.value)}
                         />
                     </Form.Group>
-                    <Button variant='primary' type='submit'>
+                    <Button variant='dark' type='submit' className='m-2'>
                         Submit
                     </Button>
                 </Form>
-            </div>
+            </Card>
         </div>
     )
 
 }
-
-export default SignUp

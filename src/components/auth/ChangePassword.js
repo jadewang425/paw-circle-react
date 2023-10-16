@@ -1,21 +1,12 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { changePassword } from '../../api/auth'
 import messages from '../shared/AutoDismissAlert/messages'
 
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
+import { Button, Card, Form } from 'react-bootstrap'
 
-const ChangePassword = (props) => {
-	// constructor(props) {
-	// 	super(props)
-
-	// 	this.state = {
-	// 		oldPassword: '',
-	// 		newPassword: '',
-	// 	}
-	// }
+export default function ChangePassword(props) {
     const [oldPassword, setOldPassword] = useState('')
     const [newPassword, setNewPassword] = useState('')
 
@@ -54,11 +45,11 @@ const ChangePassword = (props) => {
 
     return (
         <div className='row'>
-            <div className='col-sm-10 col-md-8 mx-auto mt-5'>
-                <h3>Change Password</h3>
+            <Card className='col-sm-10 col-md-8 mx-auto mt-5' style={{padding: '0'}}>
+                <Card.Header style={{backgroundColor: 'tan'}}><strong>Change Password</strong></Card.Header>
                 <Form onSubmit={onChangePassword}>
                     <Form.Group controlId='oldPassword'>
-                        <Form.Label>Old password</Form.Label>
+                        <Form.Label className='m-2'>Old password</Form.Label>
                         <Form.Control
                             required
                             name='oldPassword'
@@ -69,7 +60,7 @@ const ChangePassword = (props) => {
                         />
                     </Form.Group>
                     <Form.Group controlId='newPassword'>
-                        <Form.Label>New Password</Form.Label>
+                        <Form.Label className='m-2'>New Password</Form.Label>
                         <Form.Control
                             required
                             name='newPassword'
@@ -79,13 +70,11 @@ const ChangePassword = (props) => {
                             onChange={e => setNewPassword(e.target.value)}
                         />
                     </Form.Group>
-                    <Button variant='primary' type='submit'>
+                    <Button variant='dark' type='submit' className='m-2'>
                         Submit
                     </Button>
                 </Form>
-            </div>
+            </Card>
         </div>
     )
 }
-
-export default ChangePassword

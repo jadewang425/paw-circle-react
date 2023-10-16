@@ -10,18 +10,22 @@ export default function MeetupSideBar(props) {
             key={t}
             className={t === activeType ? 'active' : ''}
             onClick={() => setActiveType(t)}
+            variant="light"
         >
             {t}
         </Button>     
     )
     console.log('activeType', activeType)
     return (
-        <Container className="meetup-side-bar" style={{margin: '20px', width: '18rem'}}>
+        <Container 
+            className="meetup-side-bar" 
+            style={{margin: '0 20px', width: '18rem', backgroundColor: 'tan', height: '100%', padding: '20px', borderRadius: '5px'}}
+        >
             <Link to={'/meetups/create'}>
-                <Button>Create Meetup</Button>
+                <Button style={{width: '100%'}} variant="light">Create Meetup</Button>
             </Link>
-            <div>Type:</div>
-            <Button onClick={() => setActiveType('')}>All</Button>
+            <div style={{color: 'white'}}><strong>Type:</strong></div>
+            <Button onClick={() => setActiveType('')} variant="light">All</Button>
             {typeList}
         </Container>
     )
