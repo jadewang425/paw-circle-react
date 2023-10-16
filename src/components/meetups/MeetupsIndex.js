@@ -44,7 +44,6 @@ export default function MeetupsIndex(props) {
                 style={{display: 'flex', flexDirection: 'column'}}
                 activeType={activeType}
                 setActiveType={setActiveType}
-                meetups={meetups}
                 petTypes={petTypes}
             />
             <MeetupMain 

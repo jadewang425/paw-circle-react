@@ -1,5 +1,4 @@
 import dateFormat from 'dateformat'
-import { useState } from 'react'
 import { Modal, Button } from 'react-bootstrap'
 import messages from '../shared/AutoDismissAlert/messages'
 import { deleteMeetup } from '../../api/meetup'
@@ -7,7 +6,6 @@ import { useNavigate } from 'react-router-dom'
 
 export default function DeleteMeetupModal(props) {
     const { user, meetup, show, handleClose, msgAlert } = props
-    // const [meetup, setMeetup] = useState(props.meetup)
     const meetupDate = dateFormat(meetup.date, "yyyy-mm-dd • h:MM TT")
     const navigate = useNavigate()
 

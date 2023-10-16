@@ -1,4 +1,4 @@
-import { Form, Button, Card, Container } from "react-bootstrap"
+import { Form, Button, Card } from "react-bootstrap"
 import MapboxAutocomplete from "react-mapbox-autocomplete"
 
 export default function MeetupForm(props) {
@@ -56,6 +56,7 @@ export default function MeetupForm(props) {
                         inputClass="form-control search"
                         onSuggestionSelect={_suggestionSelect}
                         country="us"
+                        resetSearch={false}
                         placeholder="Location"
                         id="location"
                         name="location"

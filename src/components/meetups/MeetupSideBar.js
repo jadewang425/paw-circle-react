@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 
 export default function MeetupSideBar(props) {
-    const { meetups, activeType, setActiveType, petTypes } = props
+    const { activeType, setActiveType, petTypes } = props
 
     const typeList = petTypes.map(t => 
         <Button
