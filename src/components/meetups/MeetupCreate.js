@@ -24,25 +24,10 @@ export default function MeetupCreate (props) {
         setMeetup(prevMeetup => {
             const updatedName = e.target.name
             const updatedValue = e.target.value
-
-            // if data type is number
-            // if (e.target.type === 'number') {
-            //     updatedValue = parseInt(e.target.value)
-            // }
-
-            // if data type is boolean/checkbox in the form
-            // if (updatedName === 'adoptable' && e.target.checked) {
-            //     updatedValue = true
-            // } else if (updatedName === 'adoptable' && !e.target.checked) {
-            //     updatedValue = false
-            // }
-
             const updatedMeetup = {[updatedName]: updatedValue}
-            
             return {
                 ...prevMeetup, ...updatedMeetup
             }
-
         })
     }
 

@@ -1,4 +1,5 @@
-import { Form, Button, Container } from "react-bootstrap";
+import { Form, Button, Container } from "react-bootstrap"
+import MapboxAutocomplete from "react-mapbox-autocomplete"
 
 export default function MeetupForm(props) {
     const { meetup, handleChange, handleSubmit, heading, petTypes } = props
@@ -6,6 +7,16 @@ export default function MeetupForm(props) {
     const options = petTypes.map(option => (
         <option value={option} key={option}>{option}</option>
     ))
+
+    const mapboxApiAccessToken=
+    "pk.eyJ1Ijoiam9uc2VuIiwiYSI6IkR6UU9oMDQifQ.dymRIgqv-UV6oz0-HCFx1w"
+    
+    // console.log('.env', process.env.REACT_APP_MAPBOX_TOKEN)
+
+    function _suggestionSelect(result, lat, long, text) {
+        console.log(result, lat, long, text);
+        meetup.location = result;
+    }
 
     return (
         <Container className="justify-content-center">
@@ -45,13 +56,18 @@ export default function MeetupForm(props) {
                 </Form.Group>
                 <Form.Group className="m-2">
                     <Form.Label>Location</Form.Label>
-                    <Form.Control 
+                    <MapboxAutocomplete
+                        publicKey={mapboxApiAccessToken}
+                        inputClass="form-control search"
+                        onSuggestionSelect={_suggestionSelect}
+                        country="us"
                         placeholder="Location"
                         id="location"
                         name="location"
                         value={meetup.location}
                         onChange={handleChange}
-                    />
+                    >
+                    </MapboxAutocomplete>
                 </Form.Group>
                 <Form.Group className="m-2">
                     <Form.Label>Description</Form.Label>
