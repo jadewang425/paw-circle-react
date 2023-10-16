@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom'
 const linkStyle = {
     color: 'white',
     textDecoration: 'none',
-	margin: '0 10px',
+	margin: '10px',
+	padding: '0.5rem'
 }
 const authenticatedOptions = (
 	<>
@@ -39,6 +40,8 @@ const alwaysOptions = (
 			<Link to='/' style={linkStyle}>
 				Home
 			</Link>
+		</Nav.Item>
+		<Nav.Item>
 			<Link to='/meetups' style={linkStyle}>
 				Meetups
 			</Link>
@@ -55,10 +58,10 @@ export default function Header ({ user }) {
 				</Link>
 			</Navbar.Brand>
 			<Navbar.Toggle aria-controls='basic-navbar-nav' />
-			<Navbar.Collapse id='basic-navbar-nav'>
+			<Navbar.Collapse id='basic-navbar-nav' style={{justifyContent: 'flex-end'}}>
 				<Nav className='ml-auto' style={{ alignItems: 'center' }}>
 					{user && (
-						<span className='navbar-text mr-2'>Welcome, {user.username}</span>
+						<span className='navbar-text'>Welcome, {user.username}</span>
 					)}
 					{alwaysOptions}
 					{user ? authenticatedOptions : unauthenticatedOptions}

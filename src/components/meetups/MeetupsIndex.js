@@ -17,11 +17,11 @@ export default function MeetupsIndex(props) {
     useEffect(() => {
         getAllMeetups()
             .then(res => {
-                // if (activeType === '') {
+                if (activeType === '') {
                     setMeetups(res.data.meetups)
-                // } else {
-                //     setMeetups(res.data.meetups.filter(meetup => meetup.type === activeType))
-                // }
+                } else {
+                    setMeetups(res.data.meetups.filter(meetup => meetup.type === activeType))
+                }
                 // typesRef.current = [...new Set(meetups.map(meetup => meetup.type))]
             })
             .catch(err => {
@@ -37,11 +37,6 @@ export default function MeetupsIndex(props) {
     if (error) {
         return <LoadingScreen />
     } 
-    if (!meetups) {
-        return <LoadingScreen />
-    } else if (meetups.length === 0) {
-        return <p>No Meetups scheduled at the moment.</p>
-    }
 
     // if (activeType !== '') {
     //     setMeetups(meetups.filter(meetup => meetup.type === activeType))

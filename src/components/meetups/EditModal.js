@@ -6,12 +6,12 @@ import messages from '../shared/AutoDismissAlert/messages'
 import { updateMeetup } from '../../api/meetup'
 
 export default function EditMeetupModal(props) {
-    const { user, show, handleClose, msgAlert, triggerRefresh, petTypes } = props
+    const { user, show, handleClose, msgAlert, triggerRefresh, petTypes, MAPBOX_TOKEN } = props
     // function formattedDate (d) {
     //     return dateFormat(d, 'yyyy-mm-dd')+"T"+dateFormat(d, 'HH:MM')
     // }
     const [meetup, setMeetup] = useState(props.meetup)
-    
+    console.log('location', meetup.location)
     const onChange = (e) => {
         e.persist()
 
@@ -53,11 +53,13 @@ export default function EditMeetupModal(props) {
             <Modal.Header closeButton />
             <Modal.Body>
                 <MeetupForm 
+                    user={user}
                     meetup={meetup}
                     handleChange={onChange}
                     handleSubmit={onSubmit}
-                    heading="Update meetup"
+                    heading="Update Meetup"
                     petTypes={petTypes}
+                    MAPBOX_TOKEN={MAPBOX_TOKEN}
                 />
             </Modal.Body>
         </Modal>

@@ -1,14 +1,20 @@
 import dateFormat from "dateformat"
 import { Card, Container } from "react-bootstrap"
 import { Link } from "react-router-dom"
+import LoadingScreen from "../shared/LoadingScreen"
 
 export default function MeetupMain(props) {
     const { meetups } = props
+    if (!meetups) {
+        return <LoadingScreen />
+    } else if (meetups.length === 0) {
+        return <Container><p>No Meetups scheduled at the moment.</p></Container>
+    }
     const meetupCards = meetups.map(meetup => {
         const meetupDate = dateFormat(meetup.date, "yyyy-mm-dd • h:MM TT")
         return (
             <Link to={`/meetups/${meetup._id}`} key={ meetup._id } style={{textDecoration: 'none'}}>
-                <Card style={{ width: '18rem' }}>
+                <Card style={{ width: '18rem', height: '12rem' }}>
                     <Card.Header>{meetup.title}</Card.Header>
                     <Card.Body>
                         <Card.Text>
@@ -20,7 +26,7 @@ export default function MeetupMain(props) {
                 </Card>
             </Link>
         )
-})
+    })
     return (
         <Container className="card-container">
             {meetupCards}    

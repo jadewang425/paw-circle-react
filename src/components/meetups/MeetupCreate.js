@@ -5,10 +5,8 @@ import { useNavigate } from "react-router-dom";
 
 import MeetupForm from "../shared/MeetupForm";
 
-// pass props  meetup, handleChange, handleSubmit, heading
-
 export default function MeetupCreate (props) {
-    const { user, msgAlert, petTypes } = props
+    const { user, msgAlert, petTypes, MAPBOX_TOKEN } = props
     const navigate = useNavigate()
     const [meetup, setMeetup] = useState({
         title: '',
@@ -17,7 +15,6 @@ export default function MeetupCreate (props) {
         description: '',
         location: '',
     })
-
     const onChange = (e) => {
         e.persist()
 
@@ -54,11 +51,13 @@ export default function MeetupCreate (props) {
 
     return (
         <MeetupForm 
+            user={user}
             meetup={meetup}
             handleChange={onChange}
             handleSubmit={onSubmit}
             heading="add a new meetup"
             petTypes={petTypes}
+            MAPBOX_TOKEN={MAPBOX_TOKEN}
         />
     )
 }

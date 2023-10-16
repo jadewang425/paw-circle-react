@@ -15,7 +15,7 @@ export default function MeetupShow(props) {
     const [updated, setUpdated] = useState(false)
 
     const { id } = useParams()
-    const { user, msgAlert, petTypes } = props
+    const { user, msgAlert, petTypes, MAPBOX_TOKEN } = props
     useEffect(() => {
         getOneMeetup(id)
             .then(res => setMeetup(res.data.meetup))
@@ -67,6 +67,7 @@ export default function MeetupShow(props) {
                 triggerRefresh={() => setUpdated(prev => !prev)}
                 meetup={meetup}
                 petTypes={petTypes}
+                MAPBOX_TOKEN={MAPBOX_TOKEN}
             />
             <DeleteMeetupModal 
                 user={user}

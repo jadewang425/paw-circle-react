@@ -20,6 +20,8 @@ export default function App () {
 	const petTypes = ['Cat', 'Dog', 'Other']
 	const [user, setUser] = useState(null)
 	const [msgAlerts, setMsgAlerts] = useState([])
+	const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN
+	// console.log('MAPBOX_TOKEN', MAPBOX_TOKEN)
 
 	useEffect(() => {
 		const loggedInUser = localStorage.getItem('user')
@@ -88,12 +90,12 @@ export default function App () {
 					path='/meetups/create'
 					element={
 					<RequireAuth user={user}>
-						<MeetupCreate msgAlert={msgAlert} user={user} petTypes={petTypes} />
+						<MeetupCreate msgAlert={msgAlert} user={user} petTypes={petTypes} MAPBOX_TOKEN={MAPBOX_TOKEN} />
 					</RequireAuth>}
 				/>
 				<Route
 					path='/meetups/:id' 
-					element={<MeetupShow msgAlert={msgAlert} user={user} petTypes={petTypes} />}
+					element={<MeetupShow msgAlert={msgAlert} user={user} petTypes={petTypes} MAPBOX_TOKEN={MAPBOX_TOKEN} />}
 				/>
 			</Routes>
 			{msgAlerts.map((msgAlert) => (
