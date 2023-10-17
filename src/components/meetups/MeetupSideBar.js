@@ -19,12 +19,12 @@ export default function MeetupSideBar(props) {
     return (
         <Container 
             className="meetup-side-bar" 
-            style={{margin: '0 20px', width: '18rem', backgroundColor: 'tan', height: '100%', padding: '20px', borderRadius: '5px'}}
+            style={{flexDirection: 'row', margin: '20px', backgroundColor: 'tan', padding: '10px', borderRadius: '5px'}}
         >
             <Link to={'/meetups/create'}>
                 <Button style={{width: '100%'}} variant="light">Create Meetup</Button>
             </Link>
-            <div style={{color: 'white'}}><strong>Type:</strong></div>
+            <div style={{color: 'white', alignSelf: 'center'}}><strong>Type:</strong></div>
             <Button onClick={() => setActiveType('')} variant="light">All</Button>
             {typeList}
         </Container>

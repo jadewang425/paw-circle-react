@@ -1,3 +1,6 @@
+* {
+  font-family: 'Young Serif', serif;
+}
 body {
   margin: 0 20px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -25,4 +28,14 @@ code {
   display: flex;
   gap: 10px;
   flex-direction: column;
+}
+
+#cards {
+  width: 18rem;
+  height: 12rem;
+}
+
+#cards:hover {
+  transition: 0.3s;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }

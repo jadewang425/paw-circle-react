@@ -7,6 +7,7 @@ import messages from '../shared/AutoDismissAlert/messages'
 import LoadingScreen from "../shared/LoadingScreen";
 import EditMeetupModal from './EditModal';
 import DeleteMeetupModal from './DeleteModal';
+import MeetupMinimap from './MeetupMinimap';
 
 export default function MeetupShow(props) {
     const [meetup, setMeetup] = useState(null)
@@ -58,6 +59,7 @@ export default function MeetupShow(props) {
                     }
                     
                 </Card>
+                {/* <MeetupMinimap MAPBOX_TOKEN={MAPBOX_TOKEN} /> */}
             </Container>
             <EditMeetupModal 
                 user={user}

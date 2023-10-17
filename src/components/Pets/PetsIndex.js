@@ -39,9 +39,9 @@ export default function MeetupsIndex(props) {
     }
 
     return (
-        <main style={{display: 'flex', flexDirection: 'column', margin: '20px', alignItems: 'center'}} >
+        <main style={{display: 'flex', margin: '20px'}} >
             <MeetupSideBar 
-                style={{display: 'flex'}}
+                style={{display: 'flex', flexDirection: 'column'}}
                 activeType={activeType}
                 setActiveType={setActiveType}
                 petTypes={petTypes}

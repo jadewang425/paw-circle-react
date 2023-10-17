@@ -14,7 +14,7 @@ export default function MeetupMain(props) {
         const meetupDate = dateFormat(meetup.date, "yyyy-mm-dd • h:MM TT")
         return (
             <Link to={`/meetups/${meetup._id}`} key={ meetup._id } style={{textDecoration: 'none'}}>
-                <Card style={{ width: '18rem', height: '12rem' }}>
+                <Card id="cards" style={{ width: '18rem', height: '12rem'}}>
                     <Card.Header className="text-white" style={{backgroundColor: 'tan'}}>
                         <strong>{meetup.title}</strong>
                     </Card.Header>
@@ -30,7 +30,7 @@ export default function MeetupMain(props) {
         )
     })
     return (
-        <Container className="card-container">
+        <Container className="card-container" style={{justifyContent: 'space-between'}}>
             {meetupCards}    
         </Container>
     )
