@@ -1,8 +1,6 @@
 import { Container, Button } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
 
-
-export default function MeetupSideBar(props) {
+export default function PetTypeFilter(props) {
     const { activeType, setActiveType, petTypes } = props
 
     const typeList = petTypes.map(t => 
@@ -21,9 +19,6 @@ export default function MeetupSideBar(props) {
             className="meetup-side-bar" 
             style={{flexDirection: 'row', margin: '20px', backgroundColor: 'tan', padding: '10px', borderRadius: '5px'}}
         >
-            <Link to={'/meetups/create'}>
-                <Button style={{width: '100%'}} variant="light">Create Meetup</Button>
-            </Link>
             <div style={{color: 'white', alignSelf: 'center'}}><strong>Type:</strong></div>
             <Button onClick={() => setActiveType('')} variant="light">All</Button>
             {typeList}

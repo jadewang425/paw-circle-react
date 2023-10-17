@@ -15,6 +15,7 @@ import ChangePassword from './components/auth/ChangePassword'
 import MeetupsIndex from './components/meetups/MeetupsIndex'
 import MeetupShow from './components/meetups/MeetupShow'
 import MeetupCreate from './components/meetups/MeetupCreate'
+import PetsIndex from './components/Pets/PetsIndex'
 
 export default function App () {
 	const petTypes = ['Cat', 'Dog', 'Other']
@@ -96,6 +97,10 @@ export default function App () {
 				<Route
 					path='/meetups/:id' 
 					element={<MeetupShow msgAlert={msgAlert} user={user} petTypes={petTypes} MAPBOX_TOKEN={MAPBOX_TOKEN} />}
+				/>
+				<Route
+					path='/pets' 
+					element={<PetsIndex msgAlert={msgAlert} user={user} petTypes={petTypes} />}
 				/>
 			</Routes>
 			{msgAlerts.map((msgAlert) => (

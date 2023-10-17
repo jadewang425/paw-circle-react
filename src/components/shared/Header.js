@@ -46,6 +46,11 @@ const alwaysOptions = (
 				Meetups
 			</Link>
 		</Nav.Item>
+		<Nav.Item>
+			<Link to='/pets' style={linkStyle}>
+				Pets
+			</Link>
+		</Nav.Item>
 	</>
 )
 

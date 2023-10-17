@@ -30,7 +30,7 @@ export default function MeetupMain(props) {
         )
     })
     return (
-        <Container className="card-container" style={{justifyContent: 'space-between'}}>
+        <Container className="card-container">
             {meetupCards}    
         </Container>
     )
