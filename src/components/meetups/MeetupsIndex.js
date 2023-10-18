@@ -39,7 +39,7 @@ export default function MeetupsIndex(props) {
     }
 
     return (
-        <main style={{display: 'flex', flexDirection: 'column', margin: '20px', alignItems: 'center'}} >
+        <main style={{display: 'flex', flexDirection: 'column', margin: '20px', alignItems: 'center'}}>
             <MeetupSideBar 
                 style={{display: 'flex'}}
                 activeType={activeType}

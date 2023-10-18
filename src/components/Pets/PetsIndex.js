@@ -3,13 +3,15 @@ import { getAllPets } from '../../api/pet'
 import { Container } from 'react-bootstrap'
 import messages from '../shared/AutoDismissAlert/messages'
 import LoadingScreen from '../shared/LoadingScreen'
+import PetTypeFilter from '../shared/PetTypeFilter'
+import PetsIndexMain from './PetsIndexMain'
 
 export default function PetsIndex(props) {
+    const { msgAlert, petTypes } = props
+
     const [pets, setPets] = useState(null)
     const [error, setError] = useState(false)
     const [activeType, setActiveType] = useState('')
-
-    const { msgAlert, petTypes } = props
 
     useEffect(() => {
         getAllPets()
@@ -33,15 +35,18 @@ export default function PetsIndex(props) {
     if (error) {
         return <LoadingScreen />
     }
-    if (!pets) {
-        return <LoadingScreen />
-    } else if (pets.length === 0) {
-        return <Container><p>No Pets added.</p></Container>
-    }
 
     return (
-        <main>
-            <h1>Pets Index</h1>
+        <main style={{display: 'flex', flexDirection: 'column', margin: '20px', alignItems: 'center'}}>
+            <PetTypeFilter 
+                activeType={activeType}
+                setActiveType={setActiveType}
+                petTypes={petTypes}
+            />
+            <PetsIndexMain 
+                pets={pets}
+                className='container-md'
+            />
         </main>
     )
 }
