@@ -2,7 +2,7 @@ import { Form, Button, Card } from "react-bootstrap"
 import MapboxAutocomplete from "react-mapbox-autocomplete"
 
 export default function MeetupForm(props) {
-    const { user, meetup, handleChange, handleSubmit, heading, petTypes, MAPBOX_TOKEN } = props
+    const { meetup, handleChange, handleSubmit, heading, petTypes, MAPBOX_TOKEN } = props
 
     const options = petTypes.map(option => (
         <option value={option} key={option}>{option}</option>

@@ -1,12 +1,11 @@
-import dateFormat from 'dateformat'
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Container, Card, Button } from "react-bootstrap";
 import { getOnePet } from '../../api/pet'
 import messages from '../shared/AutoDismissAlert/messages'
 import LoadingScreen from "../shared/LoadingScreen";
-// import EditPetModal from './EditPetModal';
-// import DeletePetModal from './DeletePetModal';
+import EditPetModal from "./EditPetModal";
+// import DeletePetModal from './DeleteModal';
 
 export default function PetShow(props) {
     const [pet, setPet] = useState(null)
@@ -32,7 +31,6 @@ export default function PetShow(props) {
         return <LoadingScreen />
     } 
 
-    // const meetupDate = dateFormat(meetup.date, "yyyy-mm-dd • h:MM TT")
     return (
         <>
             <Container>
@@ -42,37 +40,38 @@ export default function PetShow(props) {
                         <Card.Text>
                             Type: {pet.type}<br/>
                             Age: {pet.age}<br/>
+                            About me: {pet.aboutme}<br/>
                             { pet.owner ? 
-                            `Created By ${pet.owner.username}`
+                            `Pawrent: ${pet.owner.username}`
                             :null }
                         </Card.Text>
                     </Card.Body>
-                    {/* { pet.owner && user && pet.owner._id === user._id ? 
+                    { pet.owner && user && pet.owner._id === user._id ? 
                         <><Card.Footer>
                             <Button className='mx-2' variant="warning" onClick={() => setEditPetModalShow(true)}>Edit</Button>
                             <Button className='mx-2' variant="danger" onClick={() => setDeletePetModalShow(true)}>Delete</Button>
                         </Card.Footer></>
                     :null
-                    } */}
+                    }
                 </Card>
             </Container>
-            <EditMeetupModal 
+            <EditPetModal 
                 user={user}
                 show={editPetModalShow}
                 msgAlert={msgAlert}
                 handleClose={() => setEditPetModalShow(false)}
                 triggerRefresh={() => setUpdatedPet(prev => !prev)}
-                meetup={meetup}
+                pet={pet}
                 petTypes={petTypes}
             />
-            <DeleteMeetupModal 
+            {/* <DeleteMeetupModal 
                 user={user}
-                show={deletePetModalShow}
+                show={deleteModalShow}
                 msgAlert={msgAlert}
-                handleClose={() => setDeletePetModalShow(false)}
-                triggerRefresh={() => setUpdatedPet(prev => !prev)}
+                handleClose={() => setDeleteModalShow(false)}
+                triggerRefresh={() => setUpdated(prev => !prev)}
                 meetup={meetup}
-            />
+            /> */}
         </>
     )
 }

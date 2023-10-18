@@ -5,8 +5,8 @@ import { Container, Card, Button } from "react-bootstrap";
 import { getOneMeetup } from "../../api/meetup";
 import messages from '../shared/AutoDismissAlert/messages'
 import LoadingScreen from "../shared/LoadingScreen";
-import EditMeetupModal from './EditModal';
-import DeleteMeetupModal from './DeleteModal';
+import EditMeetupModal from './EditMeetupModal';
+import DeleteMeetupModal from './DeleteMeetupModal';
 import MeetupMinimap from './MeetupMinimap';
 
 export default function MeetupShow(props) {

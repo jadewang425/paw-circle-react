@@ -2,7 +2,6 @@ import { useState } from "react";
 import { createMeetup } from "../../api/meetup";
 import messages from "../shared/AutoDismissAlert/messages";
 import { useNavigate } from "react-router-dom";
-
 import MeetupForm from "../shared/MeetupForm";
 
 export default function MeetupCreate (props) {

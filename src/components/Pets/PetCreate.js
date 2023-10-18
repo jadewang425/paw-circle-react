@@ -1,29 +1,27 @@
 import { useState } from "react";
-import { createMeetup } from "../../api/meetup";
+import { createPet } from "../../api/pet";
 import messages from "../shared/AutoDismissAlert/messages";
 import { useNavigate } from "react-router-dom";
+import PetForm from "../shared/PetForm";
 
-import MeetupForm from "../shared/MeetupForm";
-
-export default function MeetupCreate (props) {
-    const { user, msgAlert, petTypes, MAPBOX_TOKEN } = props
+export default function PetCreate (props) {
+    const { user, msgAlert, petTypes } = props
     const navigate = useNavigate()
-    const [meetup, setMeetup] = useState({
-        title: '',
-        date:'',
+    const [pet, setPet] = useState({
+        name: '',
         type: '',
-        description: '',
-        location: '',
+        birthday: '',
+        aboutme: '',
     })
     const onChange = (e) => {
         e.persist()
 
-        setMeetup(prevMeetup => {
+        setPet(prevPet => {
             const updatedName = e.target.name
             const updatedValue = e.target.value
-            const updatedMeetup = {[updatedName]: updatedValue}
+            const updatedPet = {[updatedName]: updatedValue}
             return {
-                ...prevMeetup, ...updatedMeetup
+                ...prevPet, ...updatedPet
             }
         })
     }
@@ -31,33 +29,32 @@ export default function MeetupCreate (props) {
     const onSubmit = (e) => {
         e.preventDefault()
         
-        createMeetup(user, meetup) 
-            .then(res => { navigate(`/meetups/${res.data.meetup._id}`)})
+        createPet(user, pet) 
+            .then(res => { navigate(`/pets/${res.data.pet._id}`)})
             .then(() => {
                 msgAlert({
-                    heading: 'Congratulations! A new meetup is created!',
-                    message: messages.createMeetupSuccess,
+                    heading: 'Congratulations! A new pet is added!',
+                    message: messages.createPetSuccess,
                     variant: 'success'
                 })
             })
             .catch(err => {
                 msgAlert({
-                    heading: 'Error creating meetup.',
-                    message: messages.createMeetupFailure,
+                    heading: 'Error creating the pet.',
+                    message: messages.createPetFailure,
                     variant: 'danger'
                 })
             })
     }
 
     return (
-        <MeetupForm 
+        <PetForm 
             user={user}
-            meetup={meetup}
+            pet={pet}
             handleChange={onChange}
             handleSubmit={onSubmit}
-            heading="Add A New Meetup"
+            heading="Add A Pet"
             petTypes={petTypes}
-            MAPBOX_TOKEN={MAPBOX_TOKEN}
         />
     )
 }

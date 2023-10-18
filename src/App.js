@@ -16,6 +16,8 @@ import MeetupsIndex from './components/meetups/MeetupsIndex'
 import MeetupShow from './components/meetups/MeetupShow'
 import MeetupCreate from './components/meetups/MeetupCreate'
 import PetsIndex from './components/Pets/PetsIndex'
+import PetShow from './components/Pets/PetShow'
+import PetCreate from './components/Pets/PetCreate'
 
 export default function App () {
 	const petTypes = ['Cat', 'Dog', 'Other']
@@ -88,6 +90,10 @@ export default function App () {
 					element={<MeetupsIndex msgAlert={msgAlert} user={user} petTypes={petTypes} />}
 				/>
 				<Route
+					path='/meetups/:id' 
+					element={<MeetupShow msgAlert={msgAlert} user={user} petTypes={petTypes} MAPBOX_TOKEN={MAPBOX_TOKEN} />}
+				/>
+				<Route
 					path='/meetups/create'
 					element={
 					<RequireAuth user={user}>
@@ -95,18 +101,18 @@ export default function App () {
 					</RequireAuth>}
 				/>
 				<Route
-					path='/meetups/:id' 
-					element={<MeetupShow msgAlert={msgAlert} user={user} petTypes={petTypes} MAPBOX_TOKEN={MAPBOX_TOKEN} />}
-				/>
-				<Route
 					path='/pets' 
 					element={<PetsIndex msgAlert={msgAlert} user={user} petTypes={petTypes} />}
+				/>
+				<Route
+					path='/pets/:id' 
+					element={<PetShow msgAlert={msgAlert} user={user} petTypes={petTypes} />}
 				/>
 				<Route
 					path='/pets/create'
 					element={
 					<RequireAuth user={user}>
-						<MeetupCreate msgAlert={msgAlert} user={user} petTypes={petTypes} />
+						<PetCreate msgAlert={msgAlert} user={user} petTypes={petTypes} />
 					</RequireAuth>}
 				/>
 			</Routes>
