@@ -5,7 +5,7 @@ import { getOnePet } from '../../api/pet'
 import messages from '../shared/AutoDismissAlert/messages'
 import LoadingScreen from "../shared/LoadingScreen";
 import EditPetModal from "./EditPetModal";
-// import DeletePetModal from './DeleteModal';
+import DeletePetModal from "./DeletePetModal";
 
 export default function PetShow(props) {
     const [pet, setPet] = useState(null)
@@ -64,14 +64,14 @@ export default function PetShow(props) {
                 pet={pet}
                 petTypes={petTypes}
             />
-            {/* <DeleteMeetupModal 
+            <DeletePetModal 
                 user={user}
-                show={deleteModalShow}
+                show={deletePetModalShow}
                 msgAlert={msgAlert}
-                handleClose={() => setDeleteModalShow(false)}
-                triggerRefresh={() => setUpdated(prev => !prev)}
-                meetup={meetup}
-            /> */}
+                handleClose={() => setDeletePetModalShow(false)}
+                triggerRefresh={() => setUpdatedPet(prev => !prev)}
+                pet={pet}
+            />
         </>
     )
 }
