@@ -102,6 +102,13 @@ export default function App () {
 					path='/pets' 
 					element={<PetsIndex msgAlert={msgAlert} user={user} petTypes={petTypes} />}
 				/>
+				<Route
+					path='/pets/create'
+					element={
+					<RequireAuth user={user}>
+						<MeetupCreate msgAlert={msgAlert} user={user} petTypes={petTypes} />
+					</RequireAuth>}
+				/>
 			</Routes>
 			{msgAlerts.map((msgAlert) => (
 				<AutoDismissAlert

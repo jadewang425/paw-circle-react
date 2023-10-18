@@ -2,8 +2,8 @@ import { useState, useEffect, useRef } from 'react'
 import { getAllMeetups } from '../../api/meetup'
 import messages from '../shared/AutoDismissAlert/messages'
 import LoadingScreen from '../shared/LoadingScreen'
-import MeetupSideBar from './MeetupSideBar'
-import MeetupMain from './MeetupMain'
+import MeetupIndexTopBar from './MeetupIndexTopBar'
+import MeetupMain from './MeetupIndexMain'
 
 export default function MeetupsIndex(props) {
     const [meetups, setMeetups] = useState(null)
@@ -40,7 +40,7 @@ export default function MeetupsIndex(props) {
 
     return (
         <main style={{display: 'flex', flexDirection: 'column', margin: '20px', alignItems: 'center'}}>
-            <MeetupSideBar 
+            <MeetupIndexTopBar 
                 style={{display: 'flex'}}
                 activeType={activeType}
                 setActiveType={setActiveType}

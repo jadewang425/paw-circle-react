@@ -15,13 +15,10 @@ export default function PetTypeFilter(props) {
     )
 
     return (
-        <Container 
-            className="meetup-side-bar" 
-            style={{flexDirection: 'row', margin: '20px', backgroundColor: 'tan', padding: '10px', borderRadius: '5px'}}
-        >
+        <div className="type-filter">
             <div style={{color: 'white', alignSelf: 'center'}}><strong>Type:</strong></div>
             <Button onClick={() => setActiveType('')} variant="light">All</Button>
             {typeList}
-        </Container>
+        </div>
     )
 }

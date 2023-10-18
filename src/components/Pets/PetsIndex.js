@@ -3,7 +3,7 @@ import { getAllPets } from '../../api/pet'
 import { Container } from 'react-bootstrap'
 import messages from '../shared/AutoDismissAlert/messages'
 import LoadingScreen from '../shared/LoadingScreen'
-import PetTypeFilter from '../shared/PetTypeFilter'
+import PetsIndexTopBar from './PetsIndexTopBar'
 import PetsIndexMain from './PetsIndexMain'
 
 export default function PetsIndex(props) {
@@ -38,7 +38,7 @@ export default function PetsIndex(props) {
 
     return (
         <main style={{display: 'flex', flexDirection: 'column', margin: '20px', alignItems: 'center'}}>
-            <PetTypeFilter 
+            <PetsIndexTopBar 
                 activeType={activeType}
                 setActiveType={setActiveType}
                 petTypes={petTypes}
