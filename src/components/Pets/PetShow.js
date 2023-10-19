@@ -8,13 +8,14 @@ import EditPetModal from "./EditPetModal";
 import DeletePetModal from "./DeletePetModal";
 
 export default function PetShow(props) {
+    const { id } = useParams()
+    const { user, msgAlert, petTypes } = props
+    
     const [pet, setPet] = useState(null)
     const [editPetModalShow, setEditPetModalShow] = useState(false)
     const [deletePetModalShow, setDeletePetModalShow] = useState(false)
     const [updatedPet, setUpdatedPet] = useState(false)
 
-    const { id } = useParams()
-    const { user, msgAlert, petTypes } = props
     useEffect(() => {
         getOnePet(id)
             .then(res => setPet(res.data.pet))

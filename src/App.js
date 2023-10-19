@@ -18,6 +18,7 @@ import MeetupCreate from './components/meetups/MeetupCreate'
 import PetsIndex from './components/Pets/PetsIndex'
 import PetShow from './components/Pets/PetShow'
 import PetCreate from './components/Pets/PetCreate'
+import UserShow from './components/users/UserShow'
 
 export default function App () {
 	const petTypes = ['Cat', 'Dog', 'Other']
@@ -53,6 +54,7 @@ export default function App () {
 			)
 		})
 	}
+	console.log('user', user)
 
 	return (
 		<Fragment>
@@ -114,6 +116,10 @@ export default function App () {
 					<RequireAuth user={user}>
 						<PetCreate msgAlert={msgAlert} user={user} petTypes={petTypes} />
 					</RequireAuth>}
+				/>
+				<Route
+					path='/pawrent/:id' 
+					element={<UserShow msgAlert={msgAlert} user={user} />}
 				/>
 			</Routes>
 			{msgAlerts.map((msgAlert) => (

@@ -28,12 +28,12 @@ export default function MeetupShow(props) {
                 })
             })
     }, [updated])
+    const meetupDate = dateFormat(meetup.date, "yyyy-mm-dd • h:MM TT")
 
     if (!meetup) {
         return <LoadingScreen />
     } 
 
-    const meetupDate = dateFormat(meetup.date, "yyyy-mm-dd • h:MM TT")
     return (
         <>
             <Container>
