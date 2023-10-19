@@ -27,6 +27,12 @@ const messages = {
 	deletePetSuccess: 'Successfully deleted your pet!',
 	deletePetFailure: 'Failed to delete your pet.',
 	showUserFailure: 'Failed to show this pawrent.',
+	addCommentSuccess: 'Successfully added your comment!',
+	addCommentFailure: 'Failed to add your comment.',
+	updateCommentSuccess: 'Successfully updated the comment!',
+	updateCommentFailure: 'Failed to update the comment.',
+	deleteCommentSuccess: 'Successfully deleted your comment!',
+	deleteCommentFailure: 'Failed to delete the comment.',
 }
 
 module.exports = messages

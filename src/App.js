@@ -54,7 +54,6 @@ export default function App () {
 			)
 		})
 	}
-	console.log('user', user)
 
 	return (
 		<Fragment>

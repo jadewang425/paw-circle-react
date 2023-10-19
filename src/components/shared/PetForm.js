@@ -24,9 +24,10 @@ export default function PetForm(props) {
                 <Form.Group className="m-2">
                     <Form.Label>Type</Form.Label>
                     <Form.Select
+                        aria-label="Pet Type"
                         id="type"
                         name="type"
-                        value={pet.type}
+                        defaultValue={pet.type}
                         onChange={handleChange}
                     >
                         {options}

@@ -1,13 +1,14 @@
 import dateFormat from 'dateformat'
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { Container, Card, Button } from "react-bootstrap";
+import { Container, Card, Button, ListGroup } from "react-bootstrap";
 import { getOneMeetup } from "../../api/meetup";
 import messages from '../shared/AutoDismissAlert/messages'
 import LoadingScreen from "../shared/LoadingScreen";
 import EditMeetupModal from './EditMeetupModal';
 import DeleteMeetupModal from './DeleteMeetupModal';
 import MeetupMinimap from './MeetupMinimap';
+import MeetupComment from './MeetupComment';
 
 export default function MeetupShow(props) {
     const [meetup, setMeetup] = useState(null)
@@ -17,12 +18,10 @@ export default function MeetupShow(props) {
 
     const { id } = useParams()
     const { user, msgAlert, petTypes, MAPBOX_TOKEN } = props
-    console.log('meetup id', id)
-    console.log('meetup before useEffect', meetup)
+
     useEffect(() => {
         getOneMeetup(id)
             .then(res => {
-                console.log('res.data', res.data)
                 setMeetup(res.data.meetup)})
             .catch(err => {
                 msgAlert({
@@ -37,6 +36,9 @@ export default function MeetupShow(props) {
         return <LoadingScreen />
     } 
 
+    const meetupComments = meetup.comments === 0 ? <ListGroup.Item>'No comments yet'</ListGroup.Item> : meetup.comments.map(comment => (
+        <ListGroup.Item key={comment._id}>{comment.owner.username}<br/> {comment.comment}<br/> <small>{dateFormat(comment.createdAt, "yyyy-mm-dd")}</small></ListGroup.Item>))
+
     return (
         <>
             <Container>
@@ -49,9 +51,9 @@ export default function MeetupShow(props) {
                             Location: {meetup.location}<br/>
                             Description: {meetup.description}<br/>
                             { meetup.owner ? 
-                                <div>
+                                <>
                                     Created by <Link to={`/pawrent/${meetup.owner._id}`}>{meetup.owner.username}</Link>
-                                </div>
+                                </>
                                 :null 
                             }
                         </Card.Text>
@@ -64,6 +66,18 @@ export default function MeetupShow(props) {
                     :null
                     }
                     
+                </Card>
+                <MeetupComment 
+                    user={user}
+                    meetup={meetup}
+                    msgAlert={msgAlert}
+                    triggerRefresh={() => setUpdated(prev => !prev)}
+                />
+                <Card className='m-2'>
+                    <Card.Header>Comments</Card.Header>
+                    <ListGroup variant="flush">
+                        {meetupComments}
+                    </ListGroup>
                 </Card>
                 {/* <MeetupMinimap MAPBOX_TOKEN={MAPBOX_TOKEN} /> */}
             </Container>

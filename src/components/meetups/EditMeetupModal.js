@@ -11,7 +11,7 @@ export default function EditMeetupModal(props) {
     //     return dateFormat(d, 'yyyy-mm-dd')+"T"+dateFormat(d, 'HH:MM')
     // }
     const [meetup, setMeetup] = useState(props.meetup)
-    console.log('location', meetup.location)
+    // console.log('location', meetup.location)
     const onChange = (e) => {
         e.persist()
 
