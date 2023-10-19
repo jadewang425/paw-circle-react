@@ -1,6 +1,6 @@
 import dateFormat from 'dateformat'
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { Container, Card, Button } from "react-bootstrap";
 import { getOneMeetup } from "../../api/meetup";
 import messages from '../shared/AutoDismissAlert/messages'
@@ -17,9 +17,13 @@ export default function MeetupShow(props) {
 
     const { id } = useParams()
     const { user, msgAlert, petTypes, MAPBOX_TOKEN } = props
+    console.log('meetup id', id)
+    console.log('meetup before useEffect', meetup)
     useEffect(() => {
         getOneMeetup(id)
-            .then(res => setMeetup(res.data.meetup))
+            .then(res => {
+                console.log('res.data', res.data)
+                setMeetup(res.data.meetup)})
             .catch(err => {
                 msgAlert({
                     heading: 'Error getting meetup',
@@ -28,7 +32,6 @@ export default function MeetupShow(props) {
                 })
             })
     }, [updated])
-    const meetupDate = dateFormat(meetup.date, "yyyy-mm-dd • h:MM TT")
 
     if (!meetup) {
         return <LoadingScreen />
@@ -41,13 +44,16 @@ export default function MeetupShow(props) {
                     <Card.Header>{meetup.title}</Card.Header>
                     <Card.Body>
                         <Card.Text>
-                            Date: {meetupDate}<br/>
+                            Date: {dateFormat(meetup.date, "yyyy-mm-dd • h:MM TT")}<br/>
                             Type: {meetup.type}<br/>
                             Location: {meetup.location}<br/>
                             Description: {meetup.description}<br/>
                             { meetup.owner ? 
-                            `Created By ${meetup.owner.username}`
-                            :null }
+                                <div>
+                                    Created by <Link to={`/pawrent/${meetup.owner._id}`}>{meetup.owner.username}</Link>
+                                </div>
+                                :null 
+                            }
                         </Card.Text>
                     </Card.Body>
                     { meetup.owner && user && meetup.owner._id === user._id ? 

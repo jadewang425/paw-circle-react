@@ -77,8 +77,7 @@ export default function App () {
 					element={
 					<RequireAuth user={user}>
 						<SignOut msgAlert={msgAlert} clearUser={clearUser} user={user} />
-					</RequireAuth>
-					}
+					</RequireAuth>}
 				/>
 				<Route
 					path='/change-password'

@@ -18,10 +18,11 @@ code {
 
 
 .card-container {
+  padding: 0;
   display: flex;
-  /* justify-content: center; */
+  justify-content: space-between;
   flex-wrap: wrap;
-  gap: 20px
+  gap: 20px;
 }
 
 .top-bar {

@@ -25,20 +25,23 @@ export default function UserShow(props) {
                 })
             })
     }, [])
-    const dateJoined = dateFormat(pawrent.createdAt, "yyyy-mm-dd")
 
     if (!pawrent) {
         return <LoadingScreen />
     }
 
     return (
-        <Card>
-            <Card.Title>Pawrent Profile</Card.Title>
-            <Card.Text>
-                {pawrent.username}<br/>
-                {pawrent.about}<br/>
-                Date Joined: {dateJoined}<br/>
-            </Card.Text>
-        </Card>
+        <Container>
+            <Card className="m-2">
+                <Card.Header>Pawrent Profile</Card.Header>
+                <Card.Body>
+                    <Card.Text>
+                        {pawrent.username}<br/>
+                        {pawrent.about}<br/>
+                        Date Joined: {dateFormat(pawrent.createdAt, "yyyy-mm-dd")}<br/>
+                    </Card.Text>
+                </Card.Body>
+            </Card>
+        </Container>
     )
 }

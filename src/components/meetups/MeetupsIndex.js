@@ -48,7 +48,6 @@ export default function MeetupsIndex(props) {
             />
             <MeetupMain 
                 meetups={meetups}
-                className='container-md'
             />
         </main>
     )
