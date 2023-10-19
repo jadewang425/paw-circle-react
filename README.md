@@ -28,6 +28,7 @@ AAU, I want to...
 - React
 - JavaScript
 - CSS
+- Mapbox Address Auto-fill
 
 ## Wireframes 
 ### Profile Page
