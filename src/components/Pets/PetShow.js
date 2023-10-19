@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { Container, Card, Button } from "react-bootstrap";
 import { getOnePet } from '../../api/pet'
 import messages from '../shared/AutoDismissAlert/messages'
@@ -43,7 +43,9 @@ export default function PetShow(props) {
                             Age: {pet.age}<br/>
                             About me: {pet.aboutme}<br/>
                             { pet.owner ? 
-                            `Pawrent: ${pet.owner.username}`
+                            <div>
+                                Pawrent: <Link to={`/pawrent/${pet.owner._id}`}>{pet.owner.username}</Link>
+                            </div>
                             :null }
                         </Card.Text>
                     </Card.Body>
