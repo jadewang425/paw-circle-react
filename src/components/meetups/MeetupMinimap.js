@@ -21,7 +21,9 @@ export default function MeetupMinimap(props) {
                 <Marker
                     latitude={meetup.location[1]}
                     longitude={meetup.location[2]}
-                ></Marker>
+                >
+                    <div className="marker temporary-marker"><span></span></div>
+                </Marker>
             </Map>
         </Container>
     )
