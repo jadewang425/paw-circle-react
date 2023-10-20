@@ -41,14 +41,14 @@ export default function MeetupShow(props) {
 
     return (
         <>
-            <Container>
+            <Container style={{display: 'flex', height: '60vh'}}>
                 <Card className='m-2'>
                     <Card.Header>{meetup.title}</Card.Header>
                     <Card.Body>
                         <Card.Text>
                             Date: {dateFormat(meetup.date, "yyyy-mm-dd • h:MM TT")}<br/>
                             Type: {meetup.type}<br/>
-                            Location: {meetup.location}<br/>
+                            Location: {meetup.location[0]}<br/>
                             Description: {meetup.description}<br/>
                             { meetup.owner ? 
                                 <>
@@ -65,8 +65,10 @@ export default function MeetupShow(props) {
                         </Card.Footer></>
                     :null
                     }
-                    
                 </Card>
+                <MeetupMinimap meetup={meetup} MAPBOX_TOKEN={MAPBOX_TOKEN} />
+            </Container>
+            <Container>
                 <MeetupComment 
                     user={user}
                     meetup={meetup}
@@ -79,7 +81,6 @@ export default function MeetupShow(props) {
                         {meetupComments}
                     </ListGroup>
                 </Card>
-                {/* <MeetupMinimap MAPBOX_TOKEN={MAPBOX_TOKEN} /> */}
             </Container>
             <EditMeetupModal 
                 user={user}

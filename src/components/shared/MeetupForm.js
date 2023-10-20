@@ -10,7 +10,7 @@ export default function MeetupForm(props) {
 
     function _suggestionSelect(result, lat, long, text) {
         console.log(result, lat, long, text);
-        meetup.location = result;
+        meetup.location = [result, lat, long, text];
     }
 
     return (
@@ -41,7 +41,7 @@ export default function MeetupForm(props) {
                 <Form.Group className="m-2">
                     <Form.Label>Type</Form.Label>
                     <Form.Select
-                        id="type"
+                        aria-label="Type of pets"
                         name="type"
                         value={meetup.type}
                         onChange={handleChange}
@@ -60,7 +60,7 @@ export default function MeetupForm(props) {
                         placeholder="Location"
                         id="location"
                         name="location"
-                        value={meetup.location}
+                        value={meetup.location[0]}
                         onChange={handleChange}
                     >
                     </MapboxAutocomplete>

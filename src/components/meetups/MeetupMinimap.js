@@ -1,20 +1,28 @@
+import Map, { Marker } from 'react-map-gl';
 import { Container } from 'react-bootstrap'
-import { AddressAutofill, AddressMinimap, useConfirmAddress, config } from '@mapbox/search-js-react';
+import { useState } from 'react';
 
 export default function MeetupMinimap(props) {
-    
-    const { MAPBOX_TOKEN } = props
+    const { meetup, MAPBOX_TOKEN } = props
+
+    const location = {
+        latitude: meetup.location[1],
+        longitude: meetup.location[2],
+        zoom: 14,
+    }
+
     return (
-        <Container style={{height: '50vh', width: '50vh', backgroundColor: 'red'}}>
-            <h1>Minimap</h1>
-            <AddressMinimap
-                accessToken={MAPBOX_TOKEN}
-                // canAdjustMarker={true}
-                // satelliteToggle={true}
-                // feature={feature}
-                // show={true}
-                // onSaveMarkerLocation={handleSaveMarkerLocation}
-            />
+        <Container className="m-2" style={{width: '50vh', height: '50vh'}}>
+            <Map
+                mapboxAccessToken={MAPBOX_TOKEN}
+                initialViewState={location}
+                mapStyle="mapbox://styles/mapbox/streets-v9"
+            >
+                <Marker
+                    latitude={meetup.location[1]}
+                    longitude={meetup.location[2]}
+                ></Marker>
+            </Map>
         </Container>
     )
 }
