@@ -2,6 +2,8 @@ import React, { Fragment } from 'react'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import { Link } from 'react-router-dom'
+import Logo from '../../assets/logos/logo_white.png'
+
 const linkStyle = {
     color: 'white',
     textDecoration: 'none',
@@ -58,9 +60,11 @@ export default function Header ({ user }) {
 	return (
 		<Navbar expand='md' style={{ backgroundColor: 'tan'}}>
 			<Navbar.Brand>
-				<Link to='/' style={linkStyle}>
-					Paw Circle
-				</Link>
+				<div>
+					<Link to='/' style={linkStyle}>
+						<img src={Logo} style={{width: '40px'}}></img>
+					</Link>
+				</div>
 			</Navbar.Brand>
 			<Navbar.Toggle aria-controls='basic-navbar-nav' />
 			<Navbar.Collapse id='basic-navbar-nav' style={{justifyContent: 'flex-end'}}>
