@@ -36,7 +36,7 @@ export default function MeetupShow(props) {
         return <LoadingScreen />
     } 
 
-    const meetupComments = meetup.comments === 0 ? <ListGroup.Item>'No comments yet'</ListGroup.Item> : meetup.comments.map(comment => (
+    const meetupComments = meetup.comments.length === 0 ? <ListGroup.Item >No comments yet</ListGroup.Item> : meetup.comments.map(comment => (
         <ListGroup.Item key={comment._id}>{comment.owner.username}<br/> {comment.comment}<br/> <small>{dateFormat(comment.createdAt, "yyyy-mm-dd")}</small></ListGroup.Item>))
 
     return (
@@ -48,7 +48,8 @@ export default function MeetupShow(props) {
                         <Card.Text>
                             Date: {dateFormat(meetup.date, "yyyy-mm-dd • h:MM TT")}<br/>
                             Type: {meetup.type}<br/>
-                            Location: {meetup.location[0]}<br/>
+                            Location: <br/>
+                            {meetup.location[0]}<br/>
                             Description: {meetup.description}<br/>
                             { meetup.owner ? 
                                 <>
