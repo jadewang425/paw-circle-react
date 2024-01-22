@@ -1,6 +1,5 @@
 import Map, { Marker } from 'react-map-gl';
 import { Container } from 'react-bootstrap'
-import { useState, useRef } from 'react';
 
 export default function MeetupMinimap(props) {
     const { meetup, MAPBOX_TOKEN } = props
@@ -12,11 +11,11 @@ export default function MeetupMinimap(props) {
     }
 
     return (
-        <Container className="m-2" style={{width: '50vh', height: '800px'}}>
+        <Container>
             <Map
                 mapboxAccessToken={MAPBOX_TOKEN}
                 initialViewState={location}
-                style={{width: 400, height: 400}}
+                style={{width: 400, height: 400, borderRadius: 10}}
                 mapStyle="mapbox://styles/mapbox/streets-v9"
             >
                 <Marker

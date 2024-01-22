@@ -41,10 +41,10 @@ export default function MeetupShow(props) {
 
     return (
         <>
-            <Container style={{display: 'flex', height: '60vh'}}>
-                <Row>
-                    <Col>
-                        <Card className='m-2'>
+            <Container>
+                <Row className='mt-2'>
+                    <Col className='p-0'>
+                        <Card>
                             <Card.Header>{meetup.title}</Card.Header>
                             <Card.Body>
                                 <Card.Text>
@@ -70,24 +70,20 @@ export default function MeetupShow(props) {
                             }
                         </Card>
                     </Col>
-                    <Col>
+                    <Col style={{display: 'flex', justifyContent: 'center'}}>
                         <MeetupMinimap meetup={meetup} MAPBOX_TOKEN={MAPBOX_TOKEN} />
                     </Col>
                 </Row>
-            </Container>
-            <Container>
-                <MeetupComment 
-                    user={user}
-                    meetup={meetup}
-                    msgAlert={msgAlert}
-                    triggerRefresh={() => setUpdated(prev => !prev)}
-                />
-                <Card className='m-2'>
-                    <Card.Header>Comments</Card.Header>
-                    <ListGroup variant="flush">
-                        {meetupComments}
-                    </ListGroup>
-                </Card>
+                <Row className='mt-2'>
+                    <MeetupComment 
+                        user={user}
+                        meetup={meetup}
+                        meetupComments={meetupComments}
+                        msgAlert={msgAlert}
+                        triggerRefresh={() => setUpdated(prev => !prev)}
+                    />
+
+                </Row>
             </Container>
             <EditMeetupModal 
                 user={user}

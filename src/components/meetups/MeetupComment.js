@@ -1,10 +1,10 @@
 import { useState } from "react"
-import { Button, Form } from "react-bootstrap"
+import { Card, Button, Form, ListGroup } from "react-bootstrap"
 import { addComment } from "../../api/comment"
 import messages from "../shared/AutoDismissAlert/messages"
 
 export default function MeetupComment(props) {
-    const { meetup, user, msgAlert, triggerRefresh } = props
+    const { meetup, user, msgAlert, triggerRefresh, meetupComments } = props
     const [comment, setComment] = useState({comment: ''})
 
     const onChange = (e) => {
@@ -35,8 +35,8 @@ export default function MeetupComment(props) {
 
     return (
         <>
-            <Form onSubmit={onSubmit}>
-                <Form.Group className="m-2">
+            <Form className='p-0' onSubmit={onSubmit}>
+                <Form.Group>
                     <Form.Label>Add A Comment</Form.Label>
                     <Form.Control 
                         placeholder="Share your thoughts!"
@@ -46,8 +46,14 @@ export default function MeetupComment(props) {
                         onChange={onChange}
                     />
                 </Form.Group>
-                <Button className="m-2" variant="dark" type="submit">Add</Button>
+                <Button className="my-2" variant="dark" type="submit">Add</Button>
             </Form>
+            <Card className='p-0'>
+                        <Card.Header>Comments</Card.Header>
+                        <ListGroup variant="flush">
+                            {meetupComments}
+                        </ListGroup>
+            </Card>
         </>
     )
 }
