@@ -1,7 +1,7 @@
 import dateFormat from 'dateformat'
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { Container, Card, Button, ListGroup } from "react-bootstrap";
+import { Container, Card, Button, ListGroup, Row, Col } from "react-bootstrap";
 import { getOneMeetup } from "../../api/meetup";
 import messages from '../shared/AutoDismissAlert/messages'
 import LoadingScreen from "../shared/LoadingScreen";
@@ -42,32 +42,38 @@ export default function MeetupShow(props) {
     return (
         <>
             <Container style={{display: 'flex', height: '60vh'}}>
-                <Card className='m-2'>
-                    <Card.Header>{meetup.title}</Card.Header>
-                    <Card.Body>
-                        <Card.Text>
-                            Date: {dateFormat(meetup.date, "yyyy-mm-dd • h:MM TT")}<br/>
-                            Type: {meetup.type}<br/>
-                            Location: <br/>
-                            {meetup.location[0]}<br/>
-                            Description: {meetup.description}<br/>
-                            { meetup.owner ? 
-                                <>
-                                    Created by <Link to={`/pawrent/${meetup.owner._id}`}>{meetup.owner.username}</Link>
-                                </>
-                                :null 
+                <Row>
+                    <Col>
+                        <Card className='m-2'>
+                            <Card.Header>{meetup.title}</Card.Header>
+                            <Card.Body>
+                                <Card.Text>
+                                    Date: {dateFormat(meetup.date, "yyyy-mm-dd • h:MM TT")}<br/>
+                                    Type: {meetup.type}<br/>
+                                    Location: <br/>
+                                    {meetup.location[0]}<br/>
+                                    Description: {meetup.description}<br/>
+                                    { meetup.owner ? 
+                                        <>
+                                            Created by <Link to={`/pawrent/${meetup.owner._id}`}>{meetup.owner.username}</Link>
+                                        </>
+                                        :null 
+                                    }
+                                </Card.Text>
+                            </Card.Body>
+                            { meetup.owner && user && meetup.owner._id === user._id ? 
+                                <><Card.Footer>
+                                    <Button className='mx-2' variant="warning" onClick={() => setEditModalShow(true)}>Edit</Button>
+                                    <Button className='mx-2' variant="danger" onClick={() => setDeleteModalShow(true)}>Delete</Button>
+                                </Card.Footer></>
+                            :null
                             }
-                        </Card.Text>
-                    </Card.Body>
-                    { meetup.owner && user && meetup.owner._id === user._id ? 
-                        <><Card.Footer>
-                            <Button className='mx-2' variant="warning" onClick={() => setEditModalShow(true)}>Edit</Button>
-                            <Button className='mx-2' variant="danger" onClick={() => setDeleteModalShow(true)}>Delete</Button>
-                        </Card.Footer></>
-                    :null
-                    }
-                </Card>
-                <MeetupMinimap meetup={meetup} MAPBOX_TOKEN={MAPBOX_TOKEN} />
+                        </Card>
+                    </Col>
+                    <Col>
+                        <MeetupMinimap meetup={meetup} MAPBOX_TOKEN={MAPBOX_TOKEN} />
+                    </Col>
+                </Row>
             </Container>
             <Container>
                 <MeetupComment 
